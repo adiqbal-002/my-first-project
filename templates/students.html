@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Module 1: Student Registration & Fee Management</h2>
+<div class="grid two">
+<form method="post" class="panel">
+  <h3>Register Student</h3>
+  <input name="name" placeholder="Student Name" required>
+  <input name="fname" placeholder="Father Name" required>
+  <select name="class_year" required><option>First Year</option><option>Second Year</option></select>
+  <select name="faculty" required><option>Medical</option><option>Engineering</option><option>CS</option><option>Arts</option></select>
+  <select name="gender" required><option>Male</option><option>Female</option><option>Other</option></select>
+  <input name="contact_number" placeholder="Contact Number" required>
+  <input name="guardian_contact_number" placeholder="Guardian Contact Number" required>
+  <textarea name="address" placeholder="Address" required></textarea>
+  <button type="submit">Register</button>
+</form>
+<form method="get" class="panel">
+  <h3>Filter Students</h3>
+  <input name="name" value="{{ filters.name }}" placeholder="Name">
+  <input name="fname" value="{{ filters.fname }}" placeholder="Father Name">
+  <select name="class_year"><option value="">All Classes</option><option {% if filters.class_year=='First Year' %}selected{% endif %}>First Year</option><option {% if filters.class_year=='Second Year' %}selected{% endif %}>Second Year</option></select>
+  <select name="faculty"><option value="">All Faculty</option><option {% if filters.faculty=='Medical' %}selected{% endif %}>Medical</option><option {% if filters.faculty=='Engineering' %}selected{% endif %}>Engineering</option><option {% if filters.faculty=='CS' %}selected{% endif %}>CS</option><option {% if filters.faculty=='Arts' %}selected{% endif %}>Arts</option></select>
+  <button type="submit">Apply Filter</button>
+</form>
+</div>
+
+<table>
+  <thead><tr><th>ID</th><th>Name</th><th>Class</th><th>Faculty</th><th>Assigned</th><th>Paid</th><th>Actions</th></tr></thead>
+  <tbody>
+    {% for s in students %}
+    <tr>
+      <td>{{ s.id }}</td><td>{{ s.name }}<br><small>{{ s.fname }}</small></td><td>{{ s.class_year }}</td><td>{{ s.faculty }}</td>
+      <td>{{ '%.2f'|format(s.assigned_total) }}</td><td>{{ '%.2f'|format(s.paid_total) }}</td>
+      <td class="actions">
+        <a href="{{ url_for('assign_fee', student_id=s.id) }}">Assign Fee</a>
+        <a href="{{ url_for('student_report', student_id=s.id) }}">Report</a>
+      </td>
+    </tr>
+    <tr><td colspan="7">
+      <details><summary>Edit/Delete {{ s.name }}</summary>
+        <form method="post" action="{{ url_for('update_student', student_id=s.id) }}" class="inline-form">
+          <input name="name" value="{{ s.name }}" required>
+          <input name="fname" value="{{ s.fname }}" required>
+          <input name="class_year" value="{{ s.class_year }}" required>
+          <input name="faculty" value="{{ s.faculty }}" required>
+          <input name="gender" value="{{ s.gender }}" required>
+          <input name="contact_number" value="{{ s.contact_number }}" required>
+          <input name="guardian_contact_number" value="{{ s.guardian_contact_number }}" required>
+          <input name="address" value="{{ s.address }}" required>
+          <button>Update</button>
+        </form>
+        <form method="post" action="{{ url_for('delete_student', student_id=s.id) }}"><button class="danger">Delete</button></form>
+      </details>
+    </td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

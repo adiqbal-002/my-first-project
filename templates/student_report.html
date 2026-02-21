@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Student Report - {{ student.name }}</h2>
+<p>Assigned Total: {{ '%.2f'|format(assigned_total) }} | Paid Total: {{ '%.2f'|format(paid_total) }} | Remaining: {{ '%.2f'|format(assigned_total-paid_total) }}</p>
+<table>
+  <thead><tr><th>Receipt</th><th>Date</th><th>Mode</th><th>Amount</th><th>Notes</th></tr></thead>
+  <tbody>
+    {% for p in payments %}
+      <tr><td>{{ p.receipt_no }}</td><td>{{ p.payment_date }}</td><td>{{ p.payment_mode }}</td><td>{{ '%.2f'|format(p.amount) }}</td><td>{{ p.notes }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

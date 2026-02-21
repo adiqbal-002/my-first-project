@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="cards">
+  <div class="card"><h3>Total Students</h3><p>{{ stats.students }}</p></div>
+  <div class="card"><h3>Hostel Students</h3><p>{{ stats.hostel_students }}</p></div>
+  <div class="card"><h3>Total Fee Collected</h3><p>{{ '%.2f'|format(stats.collected) }}</p></div>
+  <div class="card"><h3>Total Hostel Invoices</h3><p>{{ '%.2f'|format(stats.invoices) }}</p></div>
+</section>
+{% endblock %}

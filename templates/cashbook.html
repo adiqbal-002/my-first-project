@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Module 3: Cashbook</h2>
+<section class="cards">
+  <div class="card"><h3>Assigned Fee</h3><p>{{ '%.2f'|format(assigned) }}</p></div>
+  <div class="card"><h3>Collected Fee</h3><p>{{ '%.2f'|format(collected) }}</p></div>
+  <div class="card"><h3>Invoice Expenses</h3><p>{{ '%.2f'|format(invoice_total) }}</p></div>
+  <div class="card"><h3>Current Balance</h3><p>{{ '%.2f'|format(balance) }}</p></div>
+</section>
+<table>
+  <thead><tr><th>Date</th><th>Type</th><th>Reference</th><th>Credit</th><th>Debit</th></tr></thead>
+  <tbody>{% for l in ledger %}<tr><td>{{ l.txn_date }}</td><td>{{ l.txn_type }}</td><td>{{ l.ref_no }}</td><td>{{ '%.2f'|format(l.credit) }}</td><td>{{ '%.2f'|format(l.debit) }}</td></tr>{% endfor %}</tbody>
+</table>
+{% endblock %}

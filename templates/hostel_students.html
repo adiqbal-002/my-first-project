@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Module 2: Hostel Student Registration</h2>
+<div class="grid two">
+  <form method="post" class="panel">
+    <input name="name" placeholder="Name" required>
+    <input name="fname" placeholder="Father Name" required>
+    <input name="address" placeholder="Address" required>
+    <input name="contact_number" placeholder="Contact" required>
+    <input name="guardian_contact_number" placeholder="Guardian Contact" required>
+    <button>Add Hostel Student</button>
+  </form>
+  <table>
+    <thead><tr><th>Name</th><th>FName</th><th>Contact</th></tr></thead>
+    <tbody>{% for s in students %}<tr><td>{{ s.name }}</td><td>{{ s.fname }}</td><td>{{ s.contact_number }}</td></tr>{% endfor %}</tbody>
+  </table>
+</div>
+{% endblock %}
