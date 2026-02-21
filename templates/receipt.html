@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="panel receipt">
+  <h2>Payment Receipt</h2>
+  <p><strong>Receipt No:</strong> {{ payment.receipt_no }}</p>
+  <p><strong>Student:</strong> {{ payment.name }} ({{ payment.fname }})</p>
+  <p><strong>Class / Faculty:</strong> {{ payment.class_year }} / {{ payment.faculty }}</p>
+  <p><strong>Date:</strong> {{ payment.payment_date }}</p>
+  <p><strong>Amount:</strong> {{ '%.2f'|format(payment.amount) }}</p>
+  <p><strong>Mode:</strong> {{ payment.payment_mode }}</p>
+  <button onclick="window.print()">Print Receipt</button>
+</div>
+{% endblock %}

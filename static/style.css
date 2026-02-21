@@ -1,0 +1,13 @@
+body{font-family:Arial,sans-serif;margin:0;background:#f5f7fb;color:#222}
+header{background:#0b3d91;color:#fff;padding:1rem}
+nav{display:flex;flex-wrap:wrap;gap:.6rem}nav a{color:#fff;text-decoration:none;background:#215fca;padding:.35rem .55rem;border-radius:4px}
+main{padding:1rem}
+.grid.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.panel{background:#fff;padding:1rem;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.08);display:grid;gap:.55rem}
+input,select,textarea,button{padding:.5rem;border:1px solid #cfd3da;border-radius:4px}
+button{background:#0b3d91;color:#fff;cursor:pointer}.danger{background:#bb1e1e}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1rem}.card{background:#fff;padding:1rem;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+table{width:100%;border-collapse:collapse;background:#fff}th,td{border:1px solid #dee3ea;padding:.45rem;vertical-align:top}
+.flashes{list-style:none;padding:0}.flashes li{background:#d9f2d9;padding:.6rem;margin:.4rem 0;border-radius:4px}
+.inline-form{display:grid;gap:.4rem}.receipt{max-width:420px}
+@media(max-width:900px){.grid.two,.cards{grid-template-columns:1fr}}

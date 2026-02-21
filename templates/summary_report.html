@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Class Wise & Faculty Wise Collection Report</h2>
+<div class="grid two">
+  <div>
+    <h3>Class Wise</h3>
+    <table><thead><tr><th>Class</th><th>Students</th><th>Collected</th></tr></thead><tbody>
+      {% for r in by_class %}<tr><td>{{ r.class_year }}</td><td>{{ r.total_students }}</td><td>{{ '%.2f'|format(r.total_collected or 0) }}</td></tr>{% endfor %}
+    </tbody></table>
+  </div>
+  <div>
+    <h3>Faculty Wise</h3>
+    <table><thead><tr><th>Faculty</th><th>Students</th><th>Collected</th></tr></thead><tbody>
+      {% for r in by_faculty %}<tr><td>{{ r.faculty }}</td><td>{{ r.total_students }}</td><td>{{ '%.2f'|format(r.total_collected or 0) }}</td></tr>{% endfor %}
+    </tbody></table>
+  </div>
+</div>
+{% endblock %}

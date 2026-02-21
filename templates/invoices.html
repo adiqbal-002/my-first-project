@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Record Daily Hostel Cost Invoices</h2>
+<form method="post" class="panel">
+  <input name="invoice_no" value="{{ next_no }}" required>
+  <input name="invoice_date" type="date" value="{{ today }}" required>
+  <select name="hostel_student_id" required>{% for s in hostel %}<option value="{{ s.id }}">{{ s.name }}</option>{% endfor %}</select>
+  <input name="item_name" placeholder="Item Name" required>
+  <input name="price" type="number" step="0.01" placeholder="Price" required>
+  <button>Submit Invoice</button>
+</form>
+<table>
+  <thead><tr><th>No</th><th>Date</th><th>Month</th><th>Hostel Student</th><th>Item</th><th>Price</th><th>Actions</th></tr></thead>
+  <tbody>
+    {% for i in invoices %}
+    <tr>
+      <td>{{ i.invoice_no }}</td><td>{{ i.invoice_date }}</td><td><a href="{{ url_for('invoices_by_month', month=i.month_name) }}">{{ i.month_name }}</a></td><td>{{ i.hostel_name }}</td><td>{{ i.item_name }}</td><td>{{ '%.2f'|format(i.price) }}</td>
+      <td>
+        <details><summary>Edit</summary>
+          <form method="post" action="{{ url_for('update_invoice', invoice_id=i.id) }}" class="inline-form">
+            <input name="item_name" value="{{ i.item_name }}" required>
+            <input name="price" value="{{ i.price }}" required>
+            <input type="date" name="invoice_date" value="{{ i.invoice_date }}" required>
+            <button>Update</button>
+          </form>
+          <form method="post" action="{{ url_for('delete_invoice', invoice_id=i.id) }}"><button class="danger">Delete</button></form>
+        </details>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

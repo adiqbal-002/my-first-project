@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ month }} Invoice Report</h2>
+<p>Total: {{ '%.2f'|format(total) }}</p>
+<table>
+  <thead><tr><th>Invoice</th><th>Date</th><th>Student</th><th>Item</th><th>Price</th></tr></thead>
+  <tbody>{% for r in rows %}<tr><td>{{ r.invoice_no }}</td><td>{{ r.invoice_date }}</td><td>{{ r.hostel_name }}</td><td>{{ r.item_name }}</td><td>{{ '%.2f'|format(r.price) }}</td></tr>{% endfor %}</tbody>
+</table>
+{% endblock %}

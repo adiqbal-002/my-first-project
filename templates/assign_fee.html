@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Assign Fee - {{ student.name }} ({{ student.class_year }})</h2>
+<form method="post" class="panel">
+  <label>Registration Fee <input name="registration_fee" type="number" step="0.01" value="{{ fee.registration_fee if fee else 0 }}"></label>
+  <label>College Fee <input name="college_fee" type="number" step="0.01" value="{{ fee.college_fee if fee else 0 }}"></label>
+  <label>Exam Fee <input name="exam_fee" type="number" step="0.01" value="{{ fee.exam_fee if fee else 0 }}"></label>
+  <label>Hostel Fee <input name="hostel_fee" type="number" step="0.01" value="{{ fee.hostel_fee if fee else 0 }}"></label>
+  <label>Promotion Fee <input name="promotion_fee" type="number" step="0.01" value="{{ fee.promotion_fee if fee else 0 }}"></label>
+  <button>Save Fee Structure</button>
+</form>
+{% endblock %}
